@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul 
+    each message in messages 
+      li 
+        strong User: #{message.user}
+        br
+        span Text: #{message.text}
+        br
+        span Date: #{message.added}
+
