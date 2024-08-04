@@ -1,31 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const indexController = require("../controllers/indexController");
 
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date()
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date()
-  }
-];
+// Route to get all messages
+router.get("/", indexController.getAllMessages);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Mini Message Board', messages: messages });
-});
+// Route to get the form to post a new message
+router.get("/new", indexController.getMessageForm);
 
-router.get('/new', function(req, res, next) {
-  res.render('form', { title: 'New Form'});
-});
-
-router.post('/new', function(req, res, next) {
-  messages.push({text: req.body.message, user: req.body.author, added: new Date()});
-  res.redirect('/');
-});
+// Route to handle form submission
+router.post("/new", indexController.postMessageForm);
 
 module.exports = router;

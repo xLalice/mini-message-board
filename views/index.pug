@@ -6,9 +6,8 @@ block content
   ul 
     each message in messages 
       li 
-        strong User: #{message.user}
+        strong #{message.author}
         br
-        span Text: #{message.text}
+        span #{message.content}
         br
-        span Date: #{message.added}
-
+        span.date Date: #{new Date(message.created_at).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}
